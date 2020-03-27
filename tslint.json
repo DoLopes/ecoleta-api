@@ -1,0 +1,56 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint:all", "tslint-sonarts", "tslint-plugin-prettier", "tslint-config-prettier"],
+  "rules": {
+    "prettier": true,
+    "typedef": [
+      true,
+      "arrow-call-signature",
+      "array-destructuring",
+      "arrow-parameter",
+      "call-signature",
+      "member-variable-declaration",
+      "object-destructuring",
+      "parameter",
+      "property-declaration"
+    ],
+    "file-name-casing": [true, "pascal-case"],
+    "no-import-side-effect": [true, { "ignore-module": "reflect-metadata" }],
+    "completed-docs": false,
+    "prefer-function-over-method": false,
+    "no-default-import": false,
+    "no-implicit-dependencies": [
+      true,
+      "dev",
+      [
+        "Index",
+        "Main",
+        "Assertion",
+        "Src",
+        "CreateContainer",
+        "Database",
+        "Fixtures",
+        "Integration",
+        "Modules",
+        "RequestContext",
+        "TestHelpers",
+        "Types",
+        "Unit",
+        "aws-lambda"
+      ]
+    ],
+    "no-null-keyword": false,
+    "no-null-undefined-union": false,
+    "no-unsafe-any": false,
+    "no-submodule-imports": false,
+    "ban-ts-ignore": false,
+    "await-promise": [true, "Bluebird", "PromisedAssertion"],
+    "strict-comparisons": false,
+    "parameters-max-number": false,
+    "ban-types": false,
+    "no-inferrable-types": false
+  },
+  "linterOptions": {
+    "baseUrl": ["Src", "Test"]
+  }
+}
