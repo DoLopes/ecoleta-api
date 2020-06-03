@@ -1,12 +1,16 @@
-import express from "express";
-import { get } from "lodash";
+import "reflect-metadata";
 
-const DEFAULT_HTTP_PORT = 3000;
+import * as Types from "Interfaces/DI/Types";
+import { ServiceProvider } from "Interfaces/DI/ServiceProvider";
+import { HttpServer } from "Interfaces/Web/HttpServer";
 
-const app = express();
-const server = app.listen(DEFAULT_HTTP_PORT);
+const port = process.env.PORT ?? "3000";
 
-const address = server.address();
-const port = get(address, "port", 0);
+const container = ServiceProvider.createContainer();
 
-console.log(`Application listening on port ${port}`);
+const server = container.get<HttpServer>(Types.HttpServer).create();
+
+server.listen(port, (): void => {
+  // eslint-disable-next-line no-console
+  console.log(`Application listening on port ${port}`);
+});

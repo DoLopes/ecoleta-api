@@ -1,6 +1,5 @@
 import Knex from "knex";
-
-import { Settings } from "../Settings/Settings";
+import { Settings } from "Infrastructure/Settings/Settings";
 
 const settings = new Settings();
 

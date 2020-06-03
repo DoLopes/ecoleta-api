@@ -1,5 +1,5 @@
-import { ISettings } from "Src/Infrastructure/Settings/ISettings";
-import { MaybeUndefined } from "tsdef";
+import { ISettings } from "Infrastructure/Settings/ISettings";
+import { Nullable } from "Infrastructure/Helpers/Nullable";
 
 export class Settings implements ISettings {
   public getDbDebug(): boolean {
@@ -27,30 +27,18 @@ export class Settings implements ISettings {
   }
 
   private assertAndReturnNumberSetting(settingName: string): number {
-    const setting = this.returnSetting(settingName);
-
-    if (setting === undefined) {
-      throw new Error(`You need to configure the environment variable ${settingName}`);
-    }
+    const setting = this.assertAndReturnSetting(settingName);
 
     return Number(setting);
   }
 
   private assertAndReturnSetting(settingName: string): string {
-    const setting = this.returnSetting(settingName);
-
-    if (setting === undefined) {
-      throw new Error(`You need to configure the environment variable ${settingName}`);
-    }
-
-    return setting;
+    return Nullable.getValueOrThrow(
+      process.env[settingName], `You need to configure the environment variable ${settingName}`
+    );
   }
 
   private isPropertyTrue(property: string): boolean {
     return this.assertAndReturnSetting(property) === "true";
-  }
-
-  private returnSetting(settingName: string): MaybeUndefined<string> {
-    return process.env[settingName];
   }
 }

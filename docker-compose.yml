@@ -6,7 +6,7 @@ services:
     ports:
       - 5432:5432
     environment:
-      POSTGRES_DB: be_the_hero
+      POSTGRES_DB: clean-node-api
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     volumes:
@@ -22,12 +22,12 @@ services:
       - db
     environment:
       START_EXPRESS: 1
-      APP_NAME: be_the_hero
+      APP_NAME: clean-node-api
       LOG_LEVEL: debug
       DATABASE_DEBUG: "false"
       DATABASE_HOST: db
       DATABASE_PORT: 5432
-      DATABASE_NAME: be_the_hero
+      DATABASE_NAME: clean-node-api
       DATABASE_USER: postgres
       DATABASE_PASSWORD: postgres
       DATABASE_LOGGING: all
