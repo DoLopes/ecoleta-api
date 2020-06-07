@@ -4,7 +4,7 @@ import express, { Express } from "express";
 import helmet from "helmet";
 import { OK } from "http-status-codes";
 import { useContainer, useExpressServer } from "routing-controllers";
-import { DIContainer } from "DIContainer";
+import { DIContainer } from "Shared/Interfaces/DI/DIContainer";
 
 export class HttpServer {
   public static create(): Express {
@@ -15,7 +15,7 @@ export class HttpServer {
     server.use(cors());
     server.use(helmet());
 
-    useContainer(DIContainer.create())
+    useContainer(DIContainer.create());
 
     useExpressServer(server, {
       validation: true,

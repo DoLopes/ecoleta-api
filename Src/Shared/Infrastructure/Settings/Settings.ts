@@ -1,6 +1,7 @@
-import { Nullable } from "Lib/Typescript/Nullable/Nullable";
+import { Nullable } from "Shared/Lib/Typescript/Nullable/Nullable";
+import { ISettings } from "Shared/Infrastructure/Settings/ISettings";
 
-export class Settings {
+export class Settings implements ISettings {
   public getDbDebug(): boolean {
     return this.isPropertyTrue("DATABASE_DEBUG");
   }

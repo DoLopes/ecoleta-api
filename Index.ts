@@ -1,6 +1,6 @@
 import "reflect-metadata";
 
-import { HttpServer } from "Server/HttpServer";
+import { HttpServer } from "Shared/Interfaces/Web/HttpServer";
 
 const port = process.env.PORT ?? "3000";
 
