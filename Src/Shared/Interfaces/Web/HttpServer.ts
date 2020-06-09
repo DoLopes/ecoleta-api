@@ -2,12 +2,17 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import express, { Express } from "express";
 import helmet from "helmet";
-import { OK } from "http-status-codes";
-import { useContainer, useExpressServer } from "routing-controllers";
-import { DIContainer } from "Shared/Interfaces/DI/DIContainer";
+import { inject, injectable } from "inversify";
+import * as PointsTypes from "Points/Interfaces/DI/Types";
+import { IMiddleware } from "Shared/Interfaces/Web/Contracts/IMiddleware";
 
+@injectable()
 export class HttpServer {
-  public static create(): Express {
+  public constructor(
+    @inject(PointsTypes.PointsRouterMiddleware) private readonly pointsRouterMiddleware: IMiddleware
+  ) {}
+
+  public create(): Express {
     const server = express();
 
     server.use(bodyParser.text());
@@ -15,13 +20,7 @@ export class HttpServer {
     server.use(cors());
     server.use(helmet());
 
-    useContainer(DIContainer.create());
-
-    useExpressServer(server, {
-      validation: true,
-    });
-
-    server.get("/", (_req, res) => res.status(OK).send());
+    this.pointsRouterMiddleware.configure(server);
 
     return server;
   }

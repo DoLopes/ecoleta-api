@@ -1,13 +1,13 @@
 export interface ISettings {
-  getDbDebug(): boolean;
+  dbDebug: boolean;
 
-  getDbHost(): string;
+  dbHost: string;
 
-  getDbName(): string;
+  dbName: string;
 
-  getDbPassword(): string;
+  dbPassword: string;
 
-  getDbPort(): number;
+  dbPort: number;
 
-  getDbUser(): string;
+  dbUser: string;
 }

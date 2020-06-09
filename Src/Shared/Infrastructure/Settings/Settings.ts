@@ -1,29 +1,34 @@
-import { Nullable } from "Shared/Lib/Typescript/Nullable/Nullable";
+import { Nullable } from "Shared/Infrastructure/Helpers/Nullable";
 import { ISettings } from "Shared/Infrastructure/Settings/ISettings";
+import { LoggerOptions } from "typeorm/logger/LoggerOptions";
 
 export class Settings implements ISettings {
-  public getDbDebug(): boolean {
+  public get dbDebug(): boolean {
     return this.isPropertyTrue("DATABASE_DEBUG");
   }
 
-  public getDbHost(): string {
+  public get dbHost(): string {
     return this.assertAndReturnSetting("DATABASE_HOST");
   }
 
-  public getDbName(): string {
+  public get dbName(): string {
     return this.assertAndReturnSetting("DATABASE_NAME");
   }
 
-  public getDbPassword(): string {
+  public get dbPassword(): string {
     return this.assertAndReturnSetting("DATABASE_PASSWORD");
   }
 
-  public getDbPort(): number {
+  public get dbPort(): number {
     return this.assertAndReturnNumberSetting("DATABASE_PORT");
   }
 
-  public getDbUser(): string {
+  public get dbUser(): string {
     return this.assertAndReturnSetting("DATABASE_USER");
+  }
+
+  public get dbLogging(): LoggerOptions {
+    return this.assertAndReturnSetting("DATABASE_LOGGING") as LoggerOptions;
   }
 
   private assertAndReturnNumberSetting(settingName: string): number {
@@ -33,6 +38,9 @@ export class Settings implements ISettings {
   }
 
   private assertAndReturnSetting(settingName: string): string {
+    // eslint-disable-next-line no-console
+    console.log(process.env);
+
     return Nullable.getValueOrThrow(
       process.env[settingName], `You need to configure the environment variable ${settingName}`
     );

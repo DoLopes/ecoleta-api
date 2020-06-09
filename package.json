@@ -5,7 +5,12 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node ./Index.ts",
-    "test:unit": "scripts/test:unit.sh"
+    "test:unit": "scripts/test:unit.sh",
+    "db:cli": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js --config Src/Shared/Infrastructure/Database/TypeOrmConnectionOptions.ts",
+    "db:migrate:create": "npm run db:cli -- migration:create -n",
+    "db:migrate": "npm run db:cli -- migration:run",
+    "db:migrate:down": "npm run db:cli -- migration:revert",
+    "db:migrate:show": "npm run db:cli -- migration:show"
   },
   "keywords": [],
   "author": "",
@@ -49,10 +54,8 @@
     "faker": "^4.1.0",
     "helmet": "^3.22.0",
     "inversify": "^5.0.1",
-    "knex": "^0.21.1",
     "lodash": "^4.17.15",
     "mocha": "^7.2.0",
-    "mock-knex": "^0.4.9",
     "moment": "^2.26.0",
     "nock": "^12.0.3",
     "nyc": "^15.0.1",
@@ -71,7 +74,6 @@
   "dependencies": {
     "http-status-codes": "^1.4.0",
     "module-alias": "^2.2.2",
-    "routing-controllers": "^0.9.0-alpha.2",
     "typeorm": "^0.2.25"
   }
 }
