@@ -8,7 +8,7 @@ export class CreatePoints07062020022410 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(`
       create table points (
-        id binary(36) NOT NULL,
+        id uuid NOT NULL,
         image varchar(150) NOT NULL,
         name varchar(150) NOT NULL,
         email varchar(150) NOT NULL,
@@ -17,8 +17,8 @@ export class CreatePoints07062020022410 implements MigrationInterface {
         longitude bigint NOT NULL,
         city varchar(150) NOT NULL,
         uf varchar(150) NOT NULL,
-        created_at datetime(6),
-        last_updated_at datetime(6),
+        created_at timestamp(5),
+        last_updated_at timestamp(5),
         PRIMARY KEY (id)
       );
     `);

@@ -38,9 +38,6 @@ export class Settings implements ISettings {
   }
 
   private assertAndReturnSetting(settingName: string): string {
-    // eslint-disable-next-line no-console
-    console.log(process.env);
-
     return Nullable.getValueOrThrow(
       process.env[settingName], `You need to configure the environment variable ${settingName}`
     );
