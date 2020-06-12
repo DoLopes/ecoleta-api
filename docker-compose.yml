@@ -6,7 +6,7 @@ services:
     ports:
       - 5432:5432
     environment:
-      POSTGRES_DB: ecoleta-api
+      POSTGRES_DB: ecoleta-backend
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     volumes:
@@ -22,12 +22,12 @@ services:
       - db
     environment:
       START_EXPRESS: 1
-      APP_NAME: ecoleta-api
+      APP_NAME: ecoleta-backend
       LOG_LEVEL: debug
       DATABASE_DEBUG: "false"
       DATABASE_HOST: db
       DATABASE_PORT: 5432
-      DATABASE_NAME: ecoleta-api
+      DATABASE_NAME: ecoleta-backend
       DATABASE_USER: postgres
       DATABASE_PASSWORD: postgres
       DATABASE_LOGGING: all

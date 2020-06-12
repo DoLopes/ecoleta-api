@@ -1,20 +1,25 @@
 
 import { Settings } from "Shared/Infrastructure/Settings/Settings";
-import { PostgresConnectionOptions } from "typeorm/driver/postgres/PostgresConnectionOptions";
+import { ConnectionOptions } from "typeorm-seeding";
+import { ProductModel } from "Points/Infrastructure/Models/ProductModel";
+import { SnakeNamingStrategy } from "typeorm-naming-strategies";
 
 const settings = new Settings();
 
-const typeOrmConnectionOptions: PostgresConnectionOptions = {
+const typeOrmConnectionOptions: ConnectionOptions = {
   cli: {
     migrationsDir: "Src/Shared/Infrastructure/Database/Migrations",
   },
   database: settings.dbName,
-  entities: [],
+  entities: [ProductModel],
+  factories: [],
   host: settings.dbHost,
-  logging: settings.dbLogging,
   migrations: ["Src/Shared/Infrastructure/Database/Migrations/*.ts"],
+  namingStrategy: new SnakeNamingStrategy(),
+  logging: settings.dbLogging,
   password: settings.dbPassword,
   port: settings.dbPort,
+  seeds: ["Src/Shared/Infrastructure/Database/Seeds/*.seed.ts"],
   type: "postgres",
   username: settings.dbUser,
 };
