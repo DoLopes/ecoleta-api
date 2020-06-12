@@ -160,11 +160,15 @@
         "allowTupleTypes": "always"
       }
     ],
-    "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      { "argsIgnorePattern": "^_" }
+    ],
     "@typescript-eslint/no-unnecessary-boolean-literal-compare": ["error"],
     "@typescript-eslint/no-unnecessary-condition": ["error"],
     "@typescript-eslint/no-unnecessary-type-arguments": ["error"],
     "@typescript-eslint/no-unsafe-call": ["off"],
+    "@typescript-eslint/no-unsafe-assignment": ["off"],
     "@typescript-eslint/no-unsafe-member-access": ["error"],
     "@typescript-eslint/no-unsafe-return": ["error"],
     "@typescript-eslint/prefer-as-const": ["error"],

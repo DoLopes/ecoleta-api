@@ -18,7 +18,7 @@ export class CreatePoints07062020022410 implements MigrationInterface {
         city varchar(150) NOT NULL,
         uf varchar(150) NOT NULL,
         created_at timestamp(5),
-        last_updated_at timestamp(5),
+        updated_at timestamp(5),
         PRIMARY KEY (id)
       );
     `);

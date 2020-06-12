@@ -6,6 +6,7 @@
   "scripts": {
     "start": "ts-node ./Index.ts",
     "test:unit": "scripts/test:unit.sh",
+    "db:seed": "ts-node -r tsconfig-paths/register ./node_modules/typeorm-seeding/dist/cli.js --root Src/Shared/Infrastructure/Database --configName TypeOrmConnectionOptions.ts seed",
     "db:cli": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js --config Src/Shared/Infrastructure/Database/TypeOrmConnectionOptions.ts",
     "db:migrate:create": "npm run db:cli -- migration:create -n",
     "db:migrate": "npm run db:cli -- migration:run",
@@ -74,6 +75,8 @@
   "dependencies": {
     "http-status-codes": "^1.4.0",
     "module-alias": "^2.2.2",
-    "typeorm": "^0.2.25"
+    "typeorm": "^0.2.25",
+    "typeorm-naming-strategies": "^1.1.0",
+    "typeorm-seeding": "^1.6.1"
   }
 }

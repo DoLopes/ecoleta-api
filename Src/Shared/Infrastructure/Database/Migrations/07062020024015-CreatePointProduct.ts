@@ -12,7 +12,7 @@ export class CreatePointProduct07062020024015 implements MigrationInterface {
         point_id uuid NOT NULL,
         product_id uuid NOT NULL,
         created_at timestamp(5),
-        last_updated_at timestamp(5),
+        updated_at timestamp(5),
         PRIMARY KEY (id),
         CONSTRAINT point_product_fk1 FOREIGN KEY (point_id) REFERENCES points(id),
         CONSTRAINT point_product_fk2 FOREIGN KEY (product_id) REFERENCES products(id)
