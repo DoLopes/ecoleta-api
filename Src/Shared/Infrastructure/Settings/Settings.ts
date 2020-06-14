@@ -1,4 +1,4 @@
-import { Nullable } from "Shared/Infrastructure/Helpers/Nullable";
+import { Nullable } from "Shared/Lib/Nullable/Nullable";
 import { ISettings } from "Shared/Infrastructure/Settings/ISettings";
 import { LoggerOptions } from "typeorm/logger/LoggerOptions";
 
