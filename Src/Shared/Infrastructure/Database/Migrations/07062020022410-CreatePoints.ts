@@ -13,10 +13,6 @@ export class CreatePoints07062020022410 implements MigrationInterface {
         name varchar(150) NOT NULL,
         email varchar(150) NOT NULL,
         phone_mobile varchar(30) NOT NULL,
-        latitude bigint NOT NULL,
-        longitude bigint NOT NULL,
-        city varchar(150) NOT NULL,
-        uf varchar(150) NOT NULL,
         created_at timestamp(5),
         updated_at timestamp(5),
         PRIMARY KEY (id)
