@@ -1,8 +1,8 @@
 import { Container } from "inversify";
 import * as Types from "Shared/Interfaces/DI/Types";
 import { HttpServer } from "Shared/Interfaces/Web/HttpServer";
-import { Mediator } from "Shared/Interfaces/Web/Contracts/Mediator";
-import { IMediator } from "Shared/Interfaces/Web/Contracts/IMediator";
+import { Mediator } from "Shared/Application/Contracts/Mediator";
+import { IMediator } from "Shared/Application/Contracts/IMediator";
 import { PointsContainer } from "Points/Interfaces/DI/PointsContainer";
 
 export class DIContainer {

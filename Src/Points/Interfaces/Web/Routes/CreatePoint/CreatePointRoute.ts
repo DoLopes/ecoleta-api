@@ -7,11 +7,17 @@ import { CreatePointAddressDto } from "Points/Application/CreatePoint/CreatePoin
 import { CreatePointProductDto } from "Points/Application/CreatePoint/CreatePointProductDto";
 import { CreatePointAddress } from "Points/Interfaces/Web/Routes/CreatePoint/CreatePointAddress";
 import { CreatePointProducts } from "Points/Interfaces/Web/Routes/CreatePoint/CreatePointProducts";
+import { InvalidRequestError } from "Shared/Interfaces/Web/Contracts/InvalidRequestError";
 
 @injectable()
 export class CreatePointRoute extends BaseRoute {
   public async buildInput(request: Request): Promise<CreatePointCommand> {
     const createPointRequest = new CreatePointRequest(request);
+    const createPointRequestResult = createPointRequest.validate();
+
+    if (!createPointRequestResult.isValid) {
+      throw new InvalidRequestError(createPointRequestResult.errors);
+    }
 
     return new CreatePointCommand(
       createPointRequest.body.name,

@@ -1,11 +1,13 @@
 import { Request, Response, Router } from "express";
 import { inject, injectable } from "inversify";
 import * as Types from "Shared/Interfaces/DI/Types";
-import { IMediator } from "Shared/Interfaces/Web/Contracts/IMediator";
+import { IMediator } from "Shared/Application/Contracts/IMediator";
 import { getStatusCodeForApplicationEvent } from "Shared/Interfaces/Web/Helpers/GetStatusCodeForApplicationEvent";
 import { ApplicationResult } from "Shared/Application/Entities/ApplicationResult";
 import { HttpStatusCode } from "Shared/Interfaces/Web/Enums/HttpStatusCode";
 import { IRoute } from "Shared/Interfaces/Web/Contracts/IRoute";
+import { InvalidRequestError } from "Shared/Interfaces/Web/Contracts/InvalidRequestError";
+import { INVALID_REQUEST_SCHEMA } from "Shared/Application/Enums/ApplicationMessages";
 
 @injectable()
 export abstract class BaseRoute implements IRoute {
@@ -36,8 +38,20 @@ export abstract class BaseRoute implements IRoute {
 
       response.send(result);
     } catch (error) {
+      if (error instanceof InvalidRequestError) {
+        return this.sendInvalidRequestError(response, error);
+      }
+
       response.sendStatus(HttpStatusCode.INTERNAL_SERVER_ERROR);
     }
+  }
+
+  private sendInvalidRequestError(response: Response, error: InvalidRequestError): void {
+    const result = INVALID_REQUEST_SCHEMA;
+    result.items = error.errors;
+
+    response.status(HttpStatusCode.BAD_REQUEST_ERROR);
+    response.send(result);
   }
 
   public abstract configure(router: Router): void;
