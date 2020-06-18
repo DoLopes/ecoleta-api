@@ -1,13 +1,13 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
-export class CreatePointProduct07062020024015 implements MigrationInterface {
+export class CreatePointProducts07062020024015 implements MigrationInterface {
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.query("drop table point_product");
+    await queryRunner.query("drop table point_products");
   }
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(`
-      create table point_product (
+      create table point_products (
         id uuid NOT NULL,
         point_id uuid NOT NULL,
         product_id uuid NOT NULL,

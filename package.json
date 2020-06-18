@@ -9,7 +9,7 @@
     "db:seed": "ts-node -r tsconfig-paths/register ./node_modules/typeorm-seeding/dist/cli.js --root Src/Shared/Infrastructure/Database --configName TypeOrmConnectionOptions.ts seed",
     "db:cli": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js --config Src/Shared/Infrastructure/Database/TypeOrmConnectionOptions.ts",
     "db:migrate:create": "npm run db:cli -- migration:create -n",
-    "db:migrate": "npm run db:cli -- migration:run",
+    "db:migrate:up": "npm run db:cli -- migration:run",
     "db:migrate:down": "npm run db:cli -- migration:revert",
     "db:migrate:show": "npm run db:cli -- migration:show"
   },
