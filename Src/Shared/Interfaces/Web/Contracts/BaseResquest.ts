@@ -7,6 +7,10 @@ export class BaseRequest {
       forbidNonWhitelisted: true,
       skipMissingProperties: true,
       whitelist: true,
+      validationError: {
+        target: false,
+        value: false,
+      },
     });
 
     return {
