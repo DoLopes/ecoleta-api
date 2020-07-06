@@ -2,7 +2,7 @@ import { Request } from "express";
 import { plainToClass } from "class-transformer";
 import { IsDefined, ValidateNested } from "class-validator";
 import { CreatePointBody } from "Points/Interfaces/Web/Routes/CreatePoint/CreatePointBody";
-import { BaseRequest } from "Shared/Interfaces/Web/Contracts/BaseResquest";
+import { BaseRequest } from "Shared/Interfaces/Web/Entities/BaseRequest";
 
 export class CreatePointRequest extends BaseRequest {
   @IsDefined()
